@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet author="n.skiba" id="insert test data into products table">
+        <insert tableName="products">
+            <column name="id" value="1"/>
+            <column name="name" value="deposit"/>
+            <column name="status" value="1"/>
+            <column name="currency_code" value="1"/>
+            <column name="interest_rate" value="10.2"/>
+            <column name="limit" value="3000000"/>
+            <column name="created_at" value="10.12.22"/>
+            <column name="updated_at" value="12.12.22"/>
+
+        </insert>
+    </changeSet>
+    <changeSet author="n.skiba" id="insert test data into managers table">
+        <insert tableName="managers">
+            <column name="id" value="1"/>
+            <column name="first_name" value="Viktorya"/>
+            <column name="last_name" value="Morosova"/>
+            <column name="status" value="1"/>
+            <column name="created_at" value="01.06.20"/>
+            <column name="updated_at" value="11.11.20"/>
+
+        </insert>
+    </changeSet>
+    <changeSet author="n.skiba" id="insert test data into clients table">
+        <insert tableName="clients">
+            <column name="id" value="aaaabbbb-0000-9999-8888-777766665555"/>
+            <column name="status" value="1"/>
+            <column name="tax_code" value="2206905511"/>
+            <column name="first_name" value="Alena"/>
+            <column name="last_name" value="Sergeeva"/>
+            <column name="email" value="Gergeeva@gmail.com"/>
+            <column name="address" value="RB,Minsk, str.Esenina, д.10, кв.20"/>
+            <column name="phone" value="+375-666-22-33"/>
+            <column name="created_at" value="01.01.21"/>
+            <column name="updated_at" value="01.02.21"/>
+
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

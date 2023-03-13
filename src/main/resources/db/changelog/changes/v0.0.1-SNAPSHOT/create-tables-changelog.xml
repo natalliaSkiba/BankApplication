@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet author="n.skiba" id="create products table">
+        <preConditions onFail="CONTINUE" onFailMessage="Table products already exists">
+            <not>
+                <tableExists tableName="products"/>
+            </not>
+        </preConditions>
+        <createTable tableName="products">
+            <column name="id" type="integer">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(70)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="status" type="integer(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="currency_code" type="integer(2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="interest_rate" type="numeric(6, 4)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="limit" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="date">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="n.skiba" id="create managers table">
+        <preConditions onFail="CONTINUE" onFailMessage="Table managers already exists">
+            <not>
+                <tableExists tableName="managers"/>
+            </not>
+        </preConditions>
+        <createTable tableName="managers">
+            <column name="id" type="integer">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="first_name" type="varchar(50)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="last_name" type="varchar(50)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="status" type="integer(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="date">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="n.skiba" id="create clients table">
+        <preConditions onFail="CONTINUE" onFailMessage="Table clients already exists">
+            <not>
+                <tableExists tableName="clients"/>
+            </not>
+        </preConditions>
+        <createTable tableName="clients">
+            <column name="id" type="uuid">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="status" type="integer(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="tax_code" type="varchar(20)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="first_name" type="varchar(50)">
+                <constraints nullable="false" />
+            </column>
+            <column name="last_name" type="varchar(50)">
+                <constraints nullable="false" />
+            </column>
+            <column name="email" type="varchar(60)">
+                <constraints nullable="false" />
+            </column>
+            <column name="address" type="varchar(80)">
+                <constraints nullable="false" />
+            </column>
+            <column name="phone" type="varchar(20)">
+                <constraints nullable="false" />
+            </column>
+            <column name="created_at" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="date">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>
