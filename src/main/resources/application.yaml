@@ -16,8 +16,7 @@ spring:
     change-log: classpath:/db/changelog/changelog-master.xml
 
 app:
-  description: ${description}
-  version: ${version}
+
   server:
     url: ${app.server.url}
 

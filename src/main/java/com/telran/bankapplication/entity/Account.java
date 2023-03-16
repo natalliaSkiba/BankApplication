@@ -29,14 +29,14 @@ public class Account {
     private AccountType type;
     @Enumerated(EnumType.ORDINAL)
     private AccountStatus status;
-    @Enumerated(EnumType.ORDINAL)
-    private CurrencyType balance;
-    @Column(name = "currency_code")
-    private Integer currencyCodeAccount;
+     private double balance;
+   @Enumerated(EnumType.ORDINAL)
+   @Column(name = "currency_code")
+    private  CurrencyType currencyCode;
     @Column(name = "created_at")
-    private LocalDateTime dataAccountCreated;
+    private LocalDateTime dataCreated;
     @Column(name = "updated_at")
-    private LocalDateTime dataAccountUpdated;
+    private LocalDateTime dataUpdated;
 
     @ManyToOne(cascade = {MERGE, PERSIST, REFRESH})
     @JoinColumn(name = "client_id", referencedColumnName = "id")

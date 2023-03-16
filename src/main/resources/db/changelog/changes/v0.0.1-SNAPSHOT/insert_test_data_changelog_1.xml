@@ -6,9 +6,29 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
         http://www.liquibase.org/xml/ns/dbchangelog-ext https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
+
+    <changeSet author="n.skiba" id="insert test data into managers table">
+        <insert tableName="managers">
+            <column name="id"/>
+            <column name="first_name" value="Viktorya"/>
+            <column name="last_name" value="Morosova"/>
+            <column name="status" value="1"/>
+            <column name="created_at" value="01.06.20"/>
+            <column name="updated_at" value="11.11.20"/>
+        </insert>
+        <insert tableName="managers">
+            <column name="id"/>
+            <column name="first_name" value="Mary"/>
+            <column name="last_name" value="Mirnay"/>
+            <column name="status" value="1"/>
+            <column name="created_at" value="02.08.18"/>
+            <column name="updated_at" value="10.12.20"/>
+        </insert>
+    </changeSet>
     <changeSet author="n.skiba" id="insert test data into products table">
         <insert tableName="products">
-            <column name="id" value="1"/>
+            <column name="id"/>
+            <column name="manager_id" value="1"/>
             <column name="name" value="deposit"/>
             <column name="status" value="1"/>
             <column name="currency_code" value="1"/>
@@ -16,34 +36,225 @@
             <column name="limit" value="3000000"/>
             <column name="created_at" value="10.12.22"/>
             <column name="updated_at" value="12.12.22"/>
-
         </insert>
-    </changeSet>
-    <changeSet author="n.skiba" id="insert test data into managers table">
-        <insert tableName="managers">
-            <column name="id" value="1"/>
-            <column name="first_name" value="Viktorya"/>
-            <column name="last_name" value="Morosova"/>
+        <insert tableName="products">
+            <column name="id"/>
+            <column name="manager_id" value="2"/>
+            <column name="name" value="credit"/>
             <column name="status" value="1"/>
-            <column name="created_at" value="01.06.20"/>
-            <column name="updated_at" value="11.11.20"/>
-
+            <column name="currency_code" value="2"/>
+            <column name="interest_rate" value="8.4"/>
+            <column name="limit" value="5000000"/>
+            <column name="created_at" value="05.03.21"/>
+            <column name="updated_at" value="12.12.22"/>
+        </insert>
+        <insert tableName="products">
+            <column name="id"/>
+            <column name="manager_id" value="2"/>
+            <column name="name" value="account"/>
+            <column name="status" value="1"/>
+            <column name="currency_code" value="1"/>
+            <column name="interest_rate" value="1.5"/>
+            <column name="limit" value="50000000"/>
+            <column name="created_at" value="06.07.17"/>
+            <column name="updated_at" value="12.12.22"/>
+        </insert>
+        <insert tableName="products">
+            <column name="id"/>
+            <column name="manager_id" value="1"/>
+            <column name="name" value="account"/>
+            <column name="status" value="1"/>
+            <column name="currency_code" value="2"/>
+            <column name="interest_rate" value="1.0"/>
+            <column name="limit" value="60000000"/>
+            <column name="created_at" value="05.08.16"/>
+            <column name="updated_at" value="12.12.22"/>
         </insert>
     </changeSet>
     <changeSet author="n.skiba" id="insert test data into clients table">
         <insert tableName="clients">
-            <column name="id" value="aaaabbbb-0000-9999-8888-777766665555"/>
+            <column name="id" value="clientss-0000-9999-8888-777766665555"/>
+            <column name="manager1_id" value="1"/>
             <column name="status" value="1"/>
             <column name="tax_code" value="2206905511"/>
             <column name="first_name" value="Alena"/>
             <column name="last_name" value="Sergeeva"/>
             <column name="email" value="Gergeeva@gmail.com"/>
-            <column name="address" value="RB,Minsk, str.Esenina, д.10, кв.20"/>
+            <column name="address" value="RB,Minsk, str.Esenina, 10-20"/>
             <column name="phone" value="+375-666-22-33"/>
             <column name="created_at" value="01.01.21"/>
             <column name="updated_at" value="01.02.21"/>
-
         </insert>
+        <insert tableName="clients">
+            <column name="id" value="clientss-1111-9999-8888-777766665555"/>
+            <column name="manager1_id" value="1"/>
+            <column name="status" value="1"/>
+            <column name="tax_code" value="2206905622"/>
+            <column name="first_name" value="Oly"/>
+            <column name="last_name" value="Pavliva"/>
+            <column name="email" value="pavlova@gmail.com"/>
+            <column name="address" value="RB,Minsk, str.Mira, 5"/>
+            <column name="phone" value="+375-777-24-35"/>
+            <column name="created_at" value="01.01.18"/>
+            <column name="updated_at" value="05.02.20"/>
+        </insert>
+        <insert tableName="clients">
+            <column name="id" value="clientss-2222-9999-8888-777766665555"/>
+            <column name="manager1_id" value="2"/>
+            <column name="status" value="2"/>
+            <column name="tax_code" value="2206905733"/>
+            <column name="first_name" value="Pavel"/>
+            <column name="last_name" value="Nin"/>
+            <column name="email" value="nin@gmail.com"/>
+            <column name="address" value="RB,Minsk, str.Krasivay, 7-99 "/>
+            <column name="phone" value="+375-777-24-35"/>
+            <column name="created_at" value="01.01.18"/>
+            <column name="updated_at" value="05.02.20"/>
+        </insert>
+        <insert tableName="clients">
+            <column name="id" value="clientss-3333-9999-8888-777766665555"/>
+            <column name="manager1_id" value="1"/>
+            <column name="status" value="1"/>
+            <column name="tax_code" value="2206905844"/>
+            <column name="first_name" value="Vasy"/>
+            <column name="last_name" value="Polyk"/>
+            <column name="email" value="pplyk@gmail.com"/>
+            <column name="address" value="RB,Minsk, str.Brestskay, 51-98"/>
+            <column name="phone" value="+375-555-29-95"/>
+            <column name="created_at" value="08.07.19"/>
+            <column name="updated_at" value="05.03.20"/>
+        </insert>
+    </changeSet>
+    <changeSet author="n.skiba" id="insert test data into accounts table">
+        <insert tableName="accounts">
+            <column name="id" value="accounts-0000-9999-8888-777766665555"/>
+            <column name="client_id" value="clientss-0000-9999-8888-777766665555"/>
+            <column name="name" value="GB29 NWBK 6016 1331 9268 19"/>
+            <column name="type" value="2"/>
+            <column name="status" value="1"/>
+            <column name="currency_code" value="2"/>
+            <column name="balance" value="10000"/>
+            <column name="created_at" value="01.01.22"/>
+            <column name="updated_at" value="01.02.22"/>
+        </insert>
+        <insert tableName="accounts">
+            <column name="id" value="accounts-1111-9999-8888-777766665555"/>
+            <column name="client_id" value="clientss-0000-9999-8888-777766665555"/>
+            <column name="name" value="GB29 NWBK 6016 1331 9268 20"/>
+            <column name="type" value="2"/>
+            <column name="status" value="1"/>
+            <column name="currency_code" value="2"/>
+            <column name="balance" value="20000"/>
+            <column name="created_at" value="01.01.22"/>
+            <column name="updated_at" value="01.02.22"/>
+        </insert>
+        <insert tableName="accounts">
+            <column name="id" value="accounts-2222-9999-8888-777766665555"/>
+            <column name="client_id" value="clientss-1111-9999-8888-777766665555"/>
+            <column name="name" value="GB29 NWBK 6016 1331 6754 18"/>
+            <column name="type" value="2"/>
+            <column name="status" value="1"/>
+            <column name="currency_code" value="2"/>
+            <column name="balance" value="2000"/>
+            <column name="created_at" value="01.01.20"/>
+            <column name="updated_at" value="01.02.21"/>
+        </insert>
+        <insert tableName="accounts">
+            <column name="id" value="accounts-3333-9999-8888-777766665555"/>
+            <column name="client_id" value="clientss-2222-9999-8888-777766665555"/>
+            <column name="name" value="GB29 NWBK 6016 1331 4434 21"/>
+            <column name="type" value="2"/>
+            <column name="status" value="1"/>
+            <column name="currency_code" value="2"/>
+            <column name="balance" value="5000"/>
+            <column name="created_at" value="01.06.22"/>
+            <column name="updated_at" value="01.08.22"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="n.skiba" id="insert test data into agreements table">
+        <insert tableName="agreements">
+            <column name="id"/>
+            <column name="product_id" value="1"/>
+            <column name="account_id" value="accounts-0000-9999-8888-777766665555"/>
+            <column name="interest_rate" value="5.2"/>
+            <column name="status" value="2"/>
+            <column name="sum" value="15000"/>
+            <column name="created_at" value="01.01.22"/>
+            <column name="updated_at" value="01.02.22"/>
+        </insert>
+        <insert tableName="agreements">
+            <column name="id"/>
+            <column name="product_id" value="2"/>
+            <column name="account_id" value="accounts-1111-9999-8888-777766665555"/>
+            <column name="interest_rate" value="7.35"/>
+            <column name="status" value="1"/>
+            <column name="sum" value="25000"/>
+            <column name="created_at" value="10.01.20"/>
+            <column name="updated_at" value="01.01.23"/>
+        </insert>
+        <insert tableName="agreements">
+            <column name="id"/>
+            <column name="product_id" value="3"/>
+            <column name="account_id" value="accounts-2222-9999-8888-777766665555"/>
+            <column name="interest_rate" value="3"/>
+            <column name="status" value="2"/>
+            <column name="sum" value="15000"/>
+            <column name="created_at" value="01.01.22"/>
+            <column name="updated_at" value="01.02.22"/>
+        </insert>
+        <insert tableName="agreements">
+            <column name="id"/>
+            <column name="product_id" value="4"/>
+            <column name="account_id" value="accounts-3333-9999-8888-777766665555"/>
+            <column name="interest_rate" value="4"/>
+            <column name="status" value="4"/>
+            <column name="sum" value="25000000"/>
+            <column name="created_at" value="15.02.22"/>
+            <column name="updated_at" value="01.04.23"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="n.skiba" id="insert test data into transactions table">
+        <insert tableName="transactions">
+            <column name="id" value="transact-0000-9999-8888-777766665555"/>
+            <column name="debit_account_id" value="accounts-3333-9999-8888-777766665555"/>
+            <column name="credit_account_id" value="accounts-0000-9999-8888-777766665555"/>
+            <column name="type" value="2"/>
+            <column name="amount" value="10000"/>
+            <column name="description" value="Payment by agreement 01 from 01.02.23 "/>
+            <column name="created_at" value="02.02.23"/>
+        </insert>
+        <insert tableName="transactions">
+            <column name="id" value="transact-1111-9999-8888-777766665555"/>
+            <column name="debit_account_id" value="accounts-0000-9999-8888-777766665555"/>
+            <column name="credit_account_id" value="accounts-3333-9999-8888-777766665555"/>
+            <column name="type" value="2"/>
+            <column name="amount" value="10000"/>
+            <column name="description"
+                    value="refund of amount transferred by mistake under the contract01 from 01.02.23 "/>
+            <column name="created_at" value="02.02.23"/>
+        </insert>
+        <insert tableName="transactions">
+            <column name="id" value="transact-2222-9999-8888-777766665555"/>
+            <column name="debit_account_id" value="accounts-0000-9999-8888-777766665555"/>
+            <column name="credit_account_id" value="accounts-1111-9999-8888-777766665555"/>
+            <column name="type" value="2"/>
+            <column name="amount" value="1000"/>
+            <column name="description" value="Payment by agreement 10 from 01.02.23 "/>
+            <column name="created_at" value="03.02.23"/>
+        </insert>
+        <insert tableName="transactions">
+            <column name="id" value="transact-3333-9999-8888-777766665555"/>
+            <column name="debit_account_id" value="accounts-2222-9999-8888-777766665555"/>
+            <column name="credit_account_id" value="accounts-3333-9999-8888-777766665555"/>
+            <column name="type" value="2"/>
+            <column name="amount" value="2000"/>
+            <column name="description"
+                    value="Payment by agreement 02-10 from 01.20.23 "/>
+            <column name="created_at" value="04.02.23"/>
+        </insert>
+
     </changeSet>
 
 </databaseChangeLog>

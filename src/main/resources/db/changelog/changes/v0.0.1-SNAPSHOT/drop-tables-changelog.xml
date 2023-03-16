@@ -5,28 +5,24 @@
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
         http://www.liquibase.org/xml/ns/dbchangelog-ext https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <changeSet id="drop all 6 tables" author="n.skiba"> </changeSet>
     <changeSet author="n.skiba" id="drop clients table">
+
         <preConditions onFail="MARK_RAN">
             <tableExists tableName="clients"/>
         </preConditions>
-        <rollback>
-            <dropTable tableName="clients"/>
-        </rollback>
+        <dropTable tableName="clients"/>
     </changeSet>
     <changeSet author="n.skiba" id="drop managers table">
         <preConditions onFail="MARK_RAN">
             <tableExists tableName="managers"/>
         </preConditions>
-        <rollback>
-            <dropTable tableName="managers"/>
-        </rollback>
+        <dropTable tableName="managers"/>
     </changeSet>
     <changeSet author="n.skiba" id="drop products table">
         <preConditions onFail="MARK_RAN">
             <tableExists tableName="products"/>
         </preConditions>
-        <rollback>
-            <dropTable tableName="products"/>
-        </rollback>
+        <dropTable tableName="products"/>
     </changeSet>
 </databaseChangeLog>

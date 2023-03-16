@@ -56,12 +56,12 @@ public class Product {
             return false;
         }
         Product that = (Product) o;
-        return Objects.equals(this.name, that.name);
+        return Objects.equals(this.id, that.id);
                 }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name);
+        return Objects.hash(id);
     }
 
 }
