@@ -78,7 +78,7 @@
             </not>
         </preConditions>
         <createTable tableName="clients">
-            <column name="id" type="uuid">
+            <column name="id" type="binary(36)">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="manager1_id" type="integer">
@@ -121,10 +121,10 @@
             </not>
         </preConditions>
         <createTable tableName="accounts">
-            <column name="id" type="uuid" >
+            <column name="id" type="binary(36)" >
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="client_id" type="uuid">
+            <column name="client_id" type="binary(36)">
                 <constraints foreignKeyName="client_id" references="clients(id)"  nullable="false"/>
             </column>
             <column name="name" type="varchar(100)">
@@ -167,7 +167,7 @@
             <column name="product_id" type="integer">
                 <constraints foreignKeyName="product_id" references="products(id)"  nullable="false"/>
             </column>
-            <column name="account_id" type="uuid">
+            <column name="account_id" type="binary(36)">
                 <constraints foreignKeyName="account_id" references="accounts(id)"  nullable="false"/>
             </column>
             <column name="interest_rate" type="numeric(6, 4)">
@@ -195,13 +195,13 @@
             </not>
         </preConditions>
         <createTable tableName="transactions">
-            <column name="id" type="uuid" >
+            <column name="id" type="binary(36)" >
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="debit_account_id" type="uuid">
+            <column name="debit_account_id" type="binary(36)">
                 <constraints foreignKeyName="debit_account_id" references="accounts(id)"  nullable="false"/>
             </column>
-            <column name="credit_account_id" type="uuid">
+            <column name="credit_account_id" type="binary(36)">
                 <constraints foreignKeyName="credit_account_id" references="accounts(id)"  nullable="false"/>
             </column>
             <column name="type" type="integer(1)">
