@@ -1,7 +1,7 @@
 package com.telran.bankapplication.entity;
 
-import com.telran.bankapplication.enums.CurrencyType;
-import com.telran.bankapplication.enums.ProductStatus;
+import com.telran.bankapplication.entity.enums.CurrencyType;
+import com.telran.bankapplication.entity.enums.ProductStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,7 +25,7 @@ public class Product {
     @GeneratedValue
     private long id;
     private String name;
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     private ProductStatus status;
     @Column(name = "currency_code")
     @Enumerated(EnumType.STRING)

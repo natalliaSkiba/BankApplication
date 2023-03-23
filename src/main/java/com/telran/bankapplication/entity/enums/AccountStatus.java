@@ -1,12 +1,13 @@
-package com.telran.bankapplication.enums;
+package com.telran.bankapplication.entity.enums;
 
-public enum ProductStatus {
+public enum AccountStatus {
     ACTIVE(1),
     PENDING(2),
-    REMOVED(3);
+    BLOCKED(3),
+    REMOVED(4);
     private final int value;
 
-    ProductStatus(int value) {
+    AccountStatus(int value) {
         this.value = value;
     }
 

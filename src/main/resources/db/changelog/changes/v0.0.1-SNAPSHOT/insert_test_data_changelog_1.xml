@@ -73,7 +73,7 @@
     </changeSet>
     <changeSet author="n.skiba" id="insert test data into clients table">
         <insert tableName="clients">
-            <column name="id" value="clientss-0000-9999-8888-777766665555"/>
+            <column name="id"  valueComputed="UUID_TO_BIN('a6642ea6-16ff-4003-9725-1b8a4af1c6d4')"/>
             <column name="manager1_id" value="1"/>
             <column name="status" value="1"/>
             <column name="tax_code" value="2206905511"/>
@@ -86,7 +86,7 @@
             <column name="updated_at" value="01.02.21"/>
         </insert>
         <insert tableName="clients">
-            <column name="id" value="clientss-1111-9999-8888-777766665555"/>
+            <column name="id" valueComputed="UUID_TO_BIN('f7160d0c-103f-4ace-a71c-e6a00d674063')"/>
             <column name="manager1_id" value="1"/>
             <column name="status" value="1"/>
             <column name="tax_code" value="2206905622"/>
@@ -99,7 +99,7 @@
             <column name="updated_at" value="05.02.20"/>
         </insert>
         <insert tableName="clients">
-            <column name="id" value="clientss-2222-9999-8888-777766665555"/>
+            <column name="id"  valueComputed="UUID_TO_BIN('03f6e55d-467e-4a34-86ed-ed188ef59c21')"/>
             <column name="manager1_id" value="2"/>
             <column name="status" value="2"/>
             <column name="tax_code" value="2206905733"/>
@@ -112,7 +112,7 @@
             <column name="updated_at" value="05.02.20"/>
         </insert>
         <insert tableName="clients">
-            <column name="id" value="clientss-3333-9999-8888-777766665555"/>
+            <column name="id"  valueComputed="UUID_TO_BIN('13030d5e-72f5-4d8e-b82f-c88f879093ce')"/>
             <column name="manager1_id" value="1"/>
             <column name="status" value="1"/>
             <column name="tax_code" value="2206905844"/>
@@ -127,8 +127,8 @@
     </changeSet>
     <changeSet author="n.skiba" id="insert test data into accounts table">
         <insert tableName="accounts">
-            <column name="id" value="accounts-0000-9999-8888-777766665555"/>
-            <column name="client_id" value="clientss-0000-9999-8888-777766665555"/>
+            <column name="id" valueComputed="UUID_TO_BIN('a1eaaea4-2282-4050-8cc7-55220f0bf778')"/>
+            <column name="client_id"  valueComputed="UUID_TO_BIN('13030d5e-72f5-4d8e-b82f-c88f879093ce')"/>
             <column name="name" value="GB29 NWBK 6016 1331 9268 19"/>
             <column name="type" value="2"/>
             <column name="status" value="1"/>
@@ -138,8 +138,8 @@
             <column name="updated_at" value="01.02.22"/>
         </insert>
         <insert tableName="accounts">
-            <column name="id" value="accounts-1111-9999-8888-777766665555"/>
-            <column name="client_id" value="clientss-0000-9999-8888-777766665555"/>
+            <column name="id" valueComputed="UUID_TO_BIN('9c1d641c-66ca-4baf-bab2-147eab8ac0f8')"/>
+            <column name="client_id"  valueComputed="UUID_TO_BIN('13030d5e-72f5-4d8e-b82f-c88f879093ce')"/>
             <column name="name" value="GB29 NWBK 6016 1331 9268 20"/>
             <column name="type" value="2"/>
             <column name="status" value="1"/>
@@ -149,8 +149,8 @@
             <column name="updated_at" value="01.02.22"/>
         </insert>
         <insert tableName="accounts">
-            <column name="id" value="accounts-2222-9999-8888-777766665555"/>
-            <column name="client_id" value="clientss-1111-9999-8888-777766665555"/>
+            <column name="id" valueComputed="UUID_TO_BIN('50a9587b-95f5-495c-b74e-5771ee9df49d')"/>
+            <column name="client_id" valueComputed="UUID_TO_BIN('f7160d0c-103f-4ace-a71c-e6a00d674063')"/>
             <column name="name" value="GB29 NWBK 6016 1331 6754 18"/>
             <column name="type" value="2"/>
             <column name="status" value="1"/>
@@ -160,9 +160,9 @@
             <column name="updated_at" value="01.02.21"/>
         </insert>
         <insert tableName="accounts">
-            <column name="id" value="accounts-3333-9999-8888-777766665555"/>
-            <column name="client_id" value="clientss-2222-9999-8888-777766665555"/>
-            <column name="name" value="GB29 NWBK 6016 1331 4434 21"/>
+            <column name="id" valueComputed="UUID_TO_BIN('5293248d-c3aa-4ce5-9ac8-57cb05479621')"/>
+            <column name="client_id" valueComputed="UUID_TO_BIN('03f6e55d-467e-4a34-86ed-ed188ef59c21')"/>
+            <column name="name" value="GB29NWBK60161331443421"/>
             <column name="type" value="2"/>
             <column name="status" value="1"/>
             <column name="currency_code" value="2"/>
@@ -176,7 +176,7 @@
         <insert tableName="agreements">
             <column name="id"/>
             <column name="product_id" value="1"/>
-            <column name="account_id" value="accounts-0000-9999-8888-777766665555"/>
+            <column name="account_id" valueComputed="UUID_TO_BIN('a1eaaea4-2282-4050-8cc7-55220f0bf778')"/>
             <column name="interest_rate" value="5.2"/>
             <column name="status" value="2"/>
             <column name="sum" value="15000"/>
@@ -186,7 +186,7 @@
         <insert tableName="agreements">
             <column name="id"/>
             <column name="product_id" value="2"/>
-            <column name="account_id" value="accounts-1111-9999-8888-777766665555"/>
+            <column name="account_id" valueComputed="UUID_TO_BIN('9c1d641c-66ca-4baf-bab2-147eab8ac0f8')"/>
             <column name="interest_rate" value="7.35"/>
             <column name="status" value="1"/>
             <column name="sum" value="25000"/>
@@ -196,7 +196,7 @@
         <insert tableName="agreements">
             <column name="id"/>
             <column name="product_id" value="3"/>
-            <column name="account_id" value="accounts-2222-9999-8888-777766665555"/>
+            <column name="account_id" valueComputed="UUID_TO_BIN('50a9587b-95f5-495c-b74e-5771ee9df49d')"/>
             <column name="interest_rate" value="3"/>
             <column name="status" value="2"/>
             <column name="sum" value="15000"/>
@@ -206,7 +206,7 @@
         <insert tableName="agreements">
             <column name="id"/>
             <column name="product_id" value="4"/>
-            <column name="account_id" value="accounts-3333-9999-8888-777766665555"/>
+            <column name="account_id" valueComputed="UUID_TO_BIN('5293248d-c3aa-4ce5-9ac8-57cb05479621')"/>
             <column name="interest_rate" value="4"/>
             <column name="status" value="4"/>
             <column name="sum" value="25000000"/>
@@ -217,18 +217,18 @@
 
     <changeSet author="n.skiba" id="insert test data into transactions table">
         <insert tableName="transactions">
-            <column name="id" value="transact-0000-9999-8888-777766665555"/>
-            <column name="debit_account_id" value="accounts-3333-9999-8888-777766665555"/>
-            <column name="credit_account_id" value="accounts-0000-9999-8888-777766665555"/>
+            <column name="id" valueComputed="UUID_TO_BIN('e3b2611a-6ae6-429c-8232-8f1103461824')"/>
+            <column name="debit_account_id" valueComputed="UUID_TO_BIN('a1eaaea4-2282-4050-8cc7-55220f0bf778')"/>
+            <column name="credit_account_id" valueComputed="UUID_TO_BIN('9c1d641c-66ca-4baf-bab2-147eab8ac0f8')"/>
             <column name="type" value="2"/>
             <column name="amount" value="10000"/>
             <column name="description" value="Payment by agreement 01 from 01.02.23 "/>
             <column name="created_at" value="02.02.23"/>
         </insert>
         <insert tableName="transactions">
-            <column name="id" value="transact-1111-9999-8888-777766665555"/>
-            <column name="debit_account_id" value="accounts-0000-9999-8888-777766665555"/>
-            <column name="credit_account_id" value="accounts-3333-9999-8888-777766665555"/>
+            <column name="id" valueComputed="UUID_TO_BIN('5b6665d8-c327-4b2e-a524-74c63cbe9624')"/>
+            <column name="debit_account_id" valueComputed="UUID_TO_BIN('9c1d641c-66ca-4baf-bab2-147eab8ac0f8')"/>
+            <column name="credit_account_id" valueComputed="UUID_TO_BIN('a1eaaea4-2282-4050-8cc7-55220f0bf778')"/>
             <column name="type" value="2"/>
             <column name="amount" value="10000"/>
             <column name="description"
@@ -236,18 +236,18 @@
             <column name="created_at" value="02.02.23"/>
         </insert>
         <insert tableName="transactions">
-            <column name="id" value="transact-2222-9999-8888-777766665555"/>
-            <column name="debit_account_id" value="accounts-0000-9999-8888-777766665555"/>
-            <column name="credit_account_id" value="accounts-1111-9999-8888-777766665555"/>
+            <column name="id" valueComputed="UUID_TO_BIN('58026d5c-6494-4ff1-a793-9823eb0ad10e')"/>
+            <column name="debit_account_id" valueComputed="UUID_TO_BIN('50a9587b-95f5-495c-b74e-5771ee9df49d')"/>
+            <column name="credit_account_id"  valueComputed="UUID_TO_BIN('9c1d641c-66ca-4baf-bab2-147eab8ac0f8')"/>
             <column name="type" value="2"/>
             <column name="amount" value="1000"/>
             <column name="description" value="Payment by agreement 10 from 01.02.23 "/>
             <column name="created_at" value="03.02.23"/>
         </insert>
         <insert tableName="transactions">
-            <column name="id" value="transact-3333-9999-8888-777766665555"/>
-            <column name="debit_account_id" value="accounts-2222-9999-8888-777766665555"/>
-            <column name="credit_account_id" value="accounts-3333-9999-8888-777766665555"/>
+            <column name="id" valueComputed="UUID_TO_BIN('7142694b-7b85-4fc8-b204-fdce6985c2b0')"/>
+            <column name="debit_account_id" valueComputed="UUID_TO_BIN('50a9587b-95f5-495c-b74e-5771ee9df49d')"/>
+            <column name="credit_account_id" valueComputed="UUID_TO_BIN('5293248d-c3aa-4ce5-9ac8-57cb05479621')"/>
             <column name="type" value="2"/>
             <column name="amount" value="2000"/>
             <column name="description"

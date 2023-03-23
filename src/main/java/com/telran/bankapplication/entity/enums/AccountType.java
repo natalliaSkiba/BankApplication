@@ -1,4 +1,4 @@
-package com.telran.bankapplication.enums;
+package com.telran.bankapplication.entity.enums;
 
 public enum AccountType {
     CREDIT(1),

@@ -1,6 +1,6 @@
 package com.telran.bankapplication.entity;
 
-import com.telran.bankapplication.enums.ManagerStatus;
+import com.telran.bankapplication.entity.enums.ManagerStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -28,7 +28,7 @@ public class Manager {
     private String firstName;
     @Column(name = "last_name")
     private String lastName;
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     private ManagerStatus status;
     @Column(name = "created_at")
     private LocalDateTime dataCreated;

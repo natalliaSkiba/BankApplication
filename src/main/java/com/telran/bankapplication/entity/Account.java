@@ -1,13 +1,11 @@
 package com.telran.bankapplication.entity;
 
-import com.telran.bankapplication.enums.AccountStatus;
-import com.telran.bankapplication.enums.AccountType;
-import com.telran.bankapplication.enums.CurrencyType;
+import com.telran.bankapplication.entity.enums.AccountStatus;
+import com.telran.bankapplication.entity.enums.AccountType;
+import com.telran.bankapplication.entity.enums.CurrencyType;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
@@ -20,17 +18,18 @@ import static jakarta.persistence.CascadeType.*;
 @NoArgsConstructor
 @Getter
 @Setter
+@ToString
 public class Account {
     @Id
     @GeneratedValue(generator = "UUID", strategy = GenerationType.UUID)
     private UUID id;
     private String name;
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     private AccountType type;
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     private AccountStatus status;
      private double balance;
-   @Enumerated(EnumType.ORDINAL)
+   @Enumerated(EnumType.STRING)
    @Column(name = "currency_code")
     private  CurrencyType currencyCode;
     @Column(name = "created_at")

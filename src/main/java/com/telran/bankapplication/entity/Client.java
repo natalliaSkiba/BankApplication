@@ -1,6 +1,6 @@
 package com.telran.bankapplication.entity;
 
-import com.telran.bankapplication.enums.ClientStatus;
+import com.telran.bankapplication.entity.enums.ClientStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,7 +23,7 @@ public class Client {
     @Id
     @GeneratedValue(generator = "UUID", strategy = GenerationType.UUID)
     private UUID id;
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     private ClientStatus status;
     @Column(name = "tax_code")
     private String taxCode;

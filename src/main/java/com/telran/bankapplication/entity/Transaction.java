@@ -1,6 +1,6 @@
 package com.telran.bankapplication.entity;
 
-import com.telran.bankapplication.enums.TransactionType;
+import com.telran.bankapplication.entity.enums.TransactionType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,7 +19,7 @@ public class Transaction {
     @Id
     @GeneratedValue(generator = "UUID", strategy = GenerationType.UUID)
     private UUID id;
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     private TransactionType type;
     private double amount;
     private String description;

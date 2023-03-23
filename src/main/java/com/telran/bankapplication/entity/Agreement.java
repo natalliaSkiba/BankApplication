@@ -1,6 +1,6 @@
 package com.telran.bankapplication.entity;
 
-import com.telran.bankapplication.enums.AccountStatus;
+import com.telran.bankapplication.entity.enums.AccountStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,7 +22,7 @@ public class Agreement {
     private long id;
     @Column(name = "interest_rate")
     private Double interestRateAgreement;
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING )
     private AccountStatus status;
     private Double sum;
     @Column(name = "created_at")
