@@ -6,8 +6,10 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
 import java.time.LocalDateTime;
 import java.util.Objects;
+
 import static jakarta.persistence.CascadeType.*;
 
 @Entity
@@ -22,18 +24,20 @@ public class Agreement {
     private long id;
     @Column(name = "interest_rate")
     private Double interestRateAgreement;
-    @Enumerated(EnumType.STRING )
+    @Enumerated(EnumType.STRING)
     private AccountStatus status;
     private Double sum;
     @Column(name = "created_at")
     private LocalDateTime dataAgreementCreated;
     @Column(name = "updated_at")
     private LocalDateTime dataAgreementUpdated;
-    @OneToOne(mappedBy = "agreement", fetch = FetchType.LAZY,
-            orphanRemoval = true, cascade = {MERGE, PERSIST, REFRESH})
-    private Account account;
-    @ManyToOne(cascade = {MERGE, PERSIST, REFRESH})
+
+    @OneToOne()
     @JoinColumn(name = "account_id", referencedColumnName = "id")
+    private Account account;
+
+    @ManyToOne(cascade = {MERGE, PERSIST, REFRESH})
+    @JoinColumn(name = "product_id", referencedColumnName = "id")
     private Product product;
 
     @Override

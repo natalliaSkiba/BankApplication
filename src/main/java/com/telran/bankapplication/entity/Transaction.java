@@ -6,9 +6,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
 import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.UUID;
+
 @Entity
 @Table(name = "transactions")
 @AllArgsConstructor
@@ -25,12 +27,15 @@ public class Transaction {
     private String description;
     @Column(name = "created_at")
     private LocalDateTime dataTransactionCreated;
+
     @ManyToOne()
     @JoinColumn(name = "debit_account_id", referencedColumnName = "id")
     private Account debitAccount;
+
     @ManyToOne()
     @JoinColumn(name = "credit_account_id", referencedColumnName = "id")
     private Account creditAccount;
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -42,6 +47,7 @@ public class Transaction {
         Transaction that = (Transaction) o;
         return Objects.equals(this.id, that.id);
     }
+
     @Override
     public int hashCode() {
         return Objects.hash(id);

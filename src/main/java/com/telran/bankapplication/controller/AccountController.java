@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/accounts")
 @RequiredArgsConstructor
@@ -16,8 +18,12 @@ public class AccountController {
     private final AccountService accountService;
 
     @GetMapping(path = "/{name}")
-    public AccountDTO getAccountByName(@PathVariable ("name") String name) {
-        System.out.println("qqqqq");
+    public AccountDTO getAccountByName(@PathVariable("name") String name) {
         return accountService.getAccountByName(name);
+    }
+
+    @GetMapping
+    public List<AccountDTO> getAllAccounts() {
+        return accountService.getAllAccounts();
     }
 }

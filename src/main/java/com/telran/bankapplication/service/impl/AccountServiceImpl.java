@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.swing.text.html.parser.Entity;
+import java.awt.*;
 import java.util.List;
 
 @Service
@@ -19,7 +20,11 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public AccountDTO getAccountByName(String name) {
-        return accountMapper.toDTO(accountRepository.findAccountByName(name).orElseThrow(()->new IllegalStateException("Account : " + name + " doesn't exist in the database")));
+        return accountMapper.toDTO(accountRepository.findAccountByName(name).orElseThrow(() -> new IllegalStateException("Account : " + name + " doesn't exist in the database")));
+    }
 
+    @Override
+    public List<AccountDTO> getAllAccounts() {
+        return accountMapper.toDTOList(accountRepository.findAllAccount());
     }
 }

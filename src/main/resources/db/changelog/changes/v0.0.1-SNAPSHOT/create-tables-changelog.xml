@@ -21,7 +21,7 @@
             <column name="last_name" type="varchar(50)">
                 <constraints nullable="false" />
             </column>
-            <column name="status" type="integer(1)">
+            <column name="status" type="varchar(16)">
                 <constraints nullable="false"/>
             </column>
             <column name="created_at" type="date">
@@ -49,10 +49,10 @@
             <column name="name" type="varchar(70)">
                 <constraints nullable="false" />
             </column>
-            <column name="status" type="integer(1)">
+            <column name="status" type="varchar(16)">
                 <constraints nullable="false"/>
             </column>
-            <column name="currency_code" type="integer(2)">
+            <column name="currency_code" type="varchar(8)">
                 <constraints nullable="false"/>
             </column>
             <column name="interest_rate" type="numeric(6, 4)">
@@ -81,10 +81,10 @@
             <column name="id" type="binary(16)">
                 <constraints primaryKey="true" nullable="false" unique="true"/>
             </column>
-            <column name="manager1_id" type="integer">
-                <constraints foreignKeyName="manager1_id" references="managers(id)"   nullable="false"/>
+            <column name="manager_client_id" type="integer">
+                <constraints foreignKeyName="manager_client_id" references="managers(id)"   nullable="false"/>
             </column>
-            <column name="status" type="integer(1)">
+            <column name="status" type="varchar(16)">
                 <constraints nullable="false"/>
             </column>
             <column name="tax_code" type="varchar(20)">
@@ -130,16 +130,16 @@
             <column name="name" type="varchar(100)">
                 <constraints nullable="false" unique="true"/>
             </column>
-            <column name="type" type="integer(1)">
+            <column name="type" type="varchar(16)">
                 <constraints nullable="false"/>
             </column>
-            <column name="status" type="integer(1)">
+            <column name="status" type="varchar(16)">
                 <constraints nullable="false"/>
             </column>
             <column name="balance" type="decimal(15,2)">
                 <constraints nullable="false"/>
             </column>
-            <column name="currency_code" type="integer(2)">
+            <column name="currency_code" type="varchar(8)">
                 <constraints nullable="false"/>
             </column>
 
@@ -173,7 +173,7 @@
             <column name="interest_rate" type="numeric(6, 4)">
                 <constraints nullable="false"/>
             </column>
-            <column name="status" type="integer(1)">
+            <column name="status" type="varchar(16)">
                 <constraints nullable="false"/>
             </column>
             <column name="sum" type="numeric(15, 2)">
@@ -204,7 +204,7 @@
             <column name="credit_account_id" type="binary(16)">
                 <constraints foreignKeyName="credit_account_id" references="accounts(id)"  nullable="false"/>
             </column>
-            <column name="type" type="integer(1)">
+            <column name="type" type="varchar(16)">
                 <constraints nullable="false"/>
             </column>
             <column name="amount" type="numeric(12, 4)">

@@ -7,11 +7,13 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+
 import static jakarta.persistence.CascadeType.*;
 
 @Entity
@@ -37,12 +39,14 @@ public class Product {
     private LocalDateTime dataProductCreated;
     @Column(name = "updated_at")
     private LocalDateTime dataProductUpdated;
+
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "manager_product",
             joinColumns = @JoinColumn(name = "product_id"),
             inverseJoinColumns = @JoinColumn(name = "manager_id"))
     private Set<Manager> managerSet = new HashSet<>();
+
     @OneToMany(mappedBy = "product", fetch = FetchType.LAZY,
             orphanRemoval = true, cascade = {MERGE, PERSIST, REFRESH})
     private List<Agreement> agreementList;
@@ -57,11 +61,10 @@ public class Product {
         }
         Product that = (Product) o;
         return Objects.equals(this.id, that.id);
-                }
+    }
 
     @Override
     public int hashCode() {
         return Objects.hash(id);
     }
-
 }

@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
+
 import static jakarta.persistence.CascadeType.*;
 
 @Entity
@@ -28,10 +29,10 @@ public class Account {
     private AccountType type;
     @Enumerated(EnumType.STRING)
     private AccountStatus status;
-     private double balance;
-   @Enumerated(EnumType.STRING)
-   @Column(name = "currency_code")
-    private  CurrencyType currencyCode;
+    private double balance;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "currency_code")
+    private CurrencyType currencyCode;
     @Column(name = "created_at")
     private LocalDateTime dataCreated;
     @Column(name = "updated_at")
@@ -40,12 +41,14 @@ public class Account {
     @ManyToOne(cascade = {MERGE, PERSIST, REFRESH})
     @JoinColumn(name = "client_id", referencedColumnName = "id")
     private Client client;
+
     @OneToMany(mappedBy = "debitAccount")
     private List<Transaction> transactionDebit;
+
     @OneToMany(mappedBy = "creditAccount")
     private List<Transaction> transactionCredit;
-    @OneToOne(cascade = {MERGE, PERSIST, REFRESH}, fetch = FetchType.LAZY)
-    @JoinColumn(name = "agreement_id", referencedColumnName = "id")
+
+    @OneToOne(mappedBy = "account", cascade = ALL)
     private Agreement agreement;
 
     @Override

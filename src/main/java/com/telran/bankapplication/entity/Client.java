@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
@@ -38,12 +39,15 @@ public class Client {
     private LocalDateTime dataClientCreated;
     @Column(name = "updated_at")
     private LocalDateTime dataClientUpdated;
+
     @OneToMany(mappedBy = "client", fetch = FetchType.LAZY,
-    orphanRemoval = true, cascade = {MERGE, PERSIST, REFRESH})
+            orphanRemoval = true, cascade = {MERGE, PERSIST, REFRESH})
     private List<Account> accountList;
+
     @ManyToOne(cascade = {MERGE, PERSIST, REFRESH})
-    @JoinColumn(name = "manager_id", referencedColumnName = "id")
+    @JoinColumn(name = "manager_client_id", referencedColumnName = "id")
     private Manager manager;
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

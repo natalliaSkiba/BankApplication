@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
@@ -34,6 +35,7 @@ public class Manager {
     private LocalDateTime dataCreated;
     @Column(name = "updated_at")
     private LocalDateTime dataUpdated;
+
     @OneToMany(mappedBy = "manager", fetch = FetchType.LAZY,
             orphanRemoval = true, cascade = {MERGE, PERSIST, REFRESH})
     private List<Client> clientList;
