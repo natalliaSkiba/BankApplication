@@ -17,9 +17,13 @@ import java.util.List;
 public class AccountController {
     private final AccountService accountService;
 
-    @GetMapping(path = "/{name}")
+    @GetMapping(path = "/name/{name}")
     public AccountDTO getAccountByName(@PathVariable("name") String name) {
         return accountService.getAccountByName(name);
+    }
+    @GetMapping(path = "/id/{id}")
+    public AccountDTO getAccountById(@PathVariable("id") String id) {
+        return accountService.getAccountById(id);
     }
 
     @GetMapping

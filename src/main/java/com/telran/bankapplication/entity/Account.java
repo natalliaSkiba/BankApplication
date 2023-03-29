@@ -68,5 +68,3 @@ public class Account {
         return Objects.hash(name);
     }
 }
-
-

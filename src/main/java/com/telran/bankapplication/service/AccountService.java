@@ -8,4 +8,6 @@ public interface AccountService {
     AccountDTO getAccountByName(String name);
 
     List<AccountDTO> getAllAccounts();
+
+    AccountDTO getAccountById(String id);
 }
