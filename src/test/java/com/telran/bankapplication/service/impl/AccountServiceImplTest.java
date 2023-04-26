@@ -6,17 +6,15 @@ import com.telran.bankapplication.mapper.AccountMapper;
 import com.telran.bankapplication.repository.AccountRepository;
 import com.telran.bankapplication.service.util.DtoCreator;
 import com.telran.bankapplication.service.util.EntityCreator;
-import org.assertj.core.api.Assert;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.junit.jupiter.MockitoExtension;
 
+import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.Optional;
 import java.util.UUID;
-
 import static org.junit.Assert.assertEquals;
 
 @DisplayName("Account service test class")

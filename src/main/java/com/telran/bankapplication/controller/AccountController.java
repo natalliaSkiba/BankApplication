@@ -3,6 +3,7 @@ package com.telran.bankapplication.controller;
 import com.telran.bankapplication.dto.AccountDTO;
 import com.telran.bankapplication.entity.Account;
 import com.telran.bankapplication.service.AccountService;
+import com.telran.bankapplication.service.exception.AccountNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

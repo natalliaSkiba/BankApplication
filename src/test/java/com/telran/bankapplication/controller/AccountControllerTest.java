@@ -1,45 +1,60 @@
 package com.telran.bankapplication.controller;
 
 import com.telran.bankapplication.dto.AccountDTO;
-
+import com.telran.bankapplication.repository.AccountRepository;
 import com.telran.bankapplication.service.AccountService;
-
-
 import com.telran.bankapplication.service.util.DtoCreator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.HttpStatus;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.junit.jupiter.api.Test;
+import org.springframework.web.server.ResponseStatusException;
+
+import javax.security.auth.login.AccountNotFoundException;
+
+import java.util.Optional;
+import java.util.UUID;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(AccountController.class)
 @DisplayName("AccountController test class")
-@ExtendWith(MockitoExtension.class)
 class AccountControllerTest {
     @Autowired
-    MockMvc mockMvc;
+    private MockMvc mockMvc;
     @MockBean
-    AccountService accountService;
+    private AccountService accountService;
+    @InjectMocks
+    private AccountController accountController;
+    @Mock
+    private AccountRepository accountRepository;
 
- public static final String nameOk = "GB29 NWBK 6016 1331 9268 20";
+
+    //public static final String nameOk = "GB29 NWBK 6016 1331 9268 20";
+    public static final String UUID_EXAMPLE = "50a9587b-95f5-495c-b74e-5771ee9df49d";
 
 
     @Test
     @DisplayName("Test positive scenario for getAccountById")
     void testPositiveGetAccountById() throws Exception {
         AccountDTO accountDTO = DtoCreator.getDto();
-        Mockito.when(accountService.getAccountById("50a9587b-95f5-495c-b74e-5771ee9df49d")).thenReturn(accountDTO);
+        when(accountService.getAccountById(UUID_EXAMPLE)).thenReturn(accountDTO);
 
-        mockMvc.perform(MockMvcRequestBuilders.get("/accounts/id/50a9587b-95f5-495c-b74e-5771ee9df49d)"))
+        mockMvc.perform(MockMvcRequestBuilders.get("/accounts/id/50a9587b-95f5-495c-b74e-5771ee9df49d"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.name").value(nameOk))
+                .andExpect(jsonPath("$.name").value("GB29 NWBK 6016 1331 9268 20"))
                 .andExpect(jsonPath("$.type").value("DEPOSIT"))
                 .andExpect(jsonPath("$.status").value("ACTIVE"))
                 .andExpect(jsonPath("$.balance").value("20000"))
@@ -50,7 +65,48 @@ class AccountControllerTest {
                 .andExpect(jsonPath("$.dataCreated").value("2022-01-01"))
                 .andExpect(jsonPath("$.dataUpdated").value("2022-02-01"));
 
-        Mockito.verify(accountService,Mockito.times(1)).getAccountById("50a9587b-95f5-495c-b74e-5771ee9df49d");
+        Mockito.verify(accountService, Mockito.times(1)).getAccountById("50a9587b-95f5-495c-b74e-5771ee9df49d");
+    }
+
+    @Test
+    void testNegativeGetAccountById() throws Exception {
+        String nonExistentId = "non-existent-id";
+        String message = "Account not found with id " + nonExistentId;
+
+        Mockito.when(accountService.getAccountById(nonExistentId))
+                .thenThrow(new AccountNotFoundException(message));
+        ResponseStatusException exception = assertThrows(ResponseStatusException.class, () -> {
+            accountController.getAccountById(nonExistentId);
+        });
+        assertEquals(HttpStatus.NOT_FOUND, exception.getStatusCode());
+        assertEquals(message, exception.getMessage());
+        Mockito.verify(accountService, Mockito.times(0)).getAccountById(nonExistentId);
+    }
+
+    @Test
+    void testNegativeGetAccountById1() throws Exception {
+        String nonExistentId = "non-existent-id";
+        String message = "Account not found with id " + nonExistentId;
+
+        Mockito.when(accountService.getAccountById(nonExistentId))
+                .thenThrow(new AccountNotFoundException(message));
+        mockMvc.perform(MockMvcRequestBuilders.get("/accounts/id/" + nonExistentId))
+                .andExpect(status().isNotFound())
+                .andExpect(jsonPath("$.message")
+                        .value(message));
+
+        Mockito.verify(accountService);
+    }
+
+    @Test
+    void testNegativeGetAccountByI2() {
+        String nonExistentId = "non-existent-id";
+        Mockito.when(accountRepository.findAccountById(Mockito.any(UUID.class)))
+                .thenReturn(Optional.empty());
+
+        assertThrows(AccountNotFoundException.class, () -> {
+            accountService.getAccountById(nonExistentId);
+        });
     }
 
     @Test
@@ -58,9 +114,6 @@ class AccountControllerTest {
 
     }
 
-    @Test
-    void getAccountById() {
-    }
 
     @Test
     void getAllAccounts() {
