@@ -5,6 +5,7 @@ import com.telran.bankapplication.mapper.AccountMapper;
 import com.telran.bankapplication.repository.AccountRepository;
 import com.telran.bankapplication.service.AccountService;
 import com.telran.bankapplication.service.exception.AccountNotFoundException;
+import com.telran.bankapplication.service.exception.ErrorMessage;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -20,7 +21,7 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public AccountDTO getAccountByName(String name) {
         return accountMapper.toDTO(accountRepository.findAccountByName(name)
-                .orElseThrow(() -> new AccountNotFoundException(String.format(Account_NOT_FOUND,"name",name))));
+                .orElseThrow(() -> new AccountNotFoundException(String.format(ErrorMessage.ACCOUNT_NOT_FOUND_BY_NAME,"name",name))));
     }
 
     @Override
@@ -31,6 +32,6 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public AccountDTO getAccountById(String id)  {
         return accountMapper.toDTO(accountRepository.findAccountById(UUID.fromString(id))
-                .orElseThrow(()-> new AccountNotFoundException(String.format(Account_NOT_FOUND,"id",id))));
+                .orElseThrow(()-> new AccountNotFoundException(String.format(ErrorMessage.ACCOUNT_NOT_FOUND_BY_ID,"id",id))));
     }
 }

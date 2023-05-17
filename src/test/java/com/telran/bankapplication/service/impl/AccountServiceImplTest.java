@@ -4,17 +4,19 @@ import com.telran.bankapplication.dto.AccountDTO;
 import com.telran.bankapplication.entity.Account;
 import com.telran.bankapplication.mapper.AccountMapper;
 import com.telran.bankapplication.repository.AccountRepository;
-import com.telran.bankapplication.service.util.DtoCreator;
-import com.telran.bankapplication.service.util.EntityCreator;
+import com.telran.bankapplication.util.DtoCreator;
+import com.telran.bankapplication.util.EntityCreator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-
 import org.mockito.junit.jupiter.MockitoExtension;
+
 import java.util.Optional;
 import java.util.UUID;
+
 import static org.junit.Assert.assertEquals;
 
 @DisplayName("Account service test class")
@@ -24,6 +26,9 @@ class AccountServiceImplTest {
     AccountMapper accountMapper;
     @Mock
     AccountRepository accountRepository;
+    @InjectMocks
+    AccountServiceImpl accountService ;
+
 
     @Test
     void getAccountByName() {
@@ -43,7 +48,6 @@ class AccountServiceImplTest {
         Mockito.when(accountRepository.findAccountById(uuid)).thenReturn(Optional.ofNullable(account));
         Mockito.when(accountMapper.toDTO(account)).thenReturn(accountDTO);
 
-        AccountServiceImpl accountService = new AccountServiceImpl(accountMapper, accountRepository);
         AccountDTO returnedAccountDTO = accountService.getAccountById(uuid.toString());
 
         Mockito.verify(accountRepository).findAccountById(uuid);

@@ -1,4 +1,4 @@
-package com.telran.bankapplication.service.util;
+package com.telran.bankapplication.util;
 
 import com.telran.bankapplication.entity.Account;
 import com.telran.bankapplication.entity.Client;
