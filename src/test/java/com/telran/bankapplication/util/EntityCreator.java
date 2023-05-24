@@ -15,6 +15,7 @@ import java.util.UUID;
 @UtilityClass
 public class EntityCreator {
     public static final String UUID_EXAMPLE = "50a9587b-95f5-495c-b74e-5771ee9df49d";
+    public static final String NAME_OK = "GB29 NWBK 6016 1331 9268 20";
     public static Account getEntity(){
         // Создание объекта LocalDateTime из строки
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -23,7 +24,6 @@ public class EntityCreator {
        // Создаем объект клиента
         Client client = new Client();
         client.setId(UUID.fromString("f7160d0c-103f-4ace-a71c-e6a00d674063")); // задаем идентификатор клиента
-        //client.setId(UUID.randomUUID());
         client.setFirstName("Oly");
         client.setLastName("Pavliva");
         // Создаем объект manager

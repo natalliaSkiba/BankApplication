@@ -6,7 +6,7 @@ import lombok.experimental.UtilityClass;
 @UtilityClass
 public class DtoCreator {
     public static AccountDTO getDto() {
-        String name = "GB29 NWBK 6016 1331 9268 20";
+        String name = "GB29  NWBK 6016 1331 9268 20";
         String type = "DEPOSIT";
         String status = "ACTIVE";
         String balance = "20000";
