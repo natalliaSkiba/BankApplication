@@ -16,8 +16,17 @@ import static org.junit.Assert.assertEquals;
 
 @DisplayName("Account mapper test class")
 class AccountMapperTest {
-    @InjectMocks
-    AccountMapper accountMapper = Mappers.getMapper(AccountMapper.class);
+
+    //   AccountMapper accountMapper = Mappers.getMapper(AccountMapper.class);
+    private final AccountMapper accountMapper = new AccountMapperImpl();
+    @DisplayName("Positive test. Account mapper to DTO test")
+    @Test
+    void toDtoTest() {
+        Account account = EntityCreator.getEntity();
+        AccountDTO expectedAccountDto = DtoCreator.getDto();
+        Assertions.assertEquals(expectedAccountDto, accountMapper.toDTO(account));
+    }
+
     //new AccountMapperImpl();
 
 //    @DisplayName("Positive test. Account mapper to DTO test")

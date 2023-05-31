@@ -21,5 +21,5 @@ public class ClientCreateDto {
     @NonNull
     String phone;
     @NonNull
-    String manager;
+    String managerLastName;
 }
