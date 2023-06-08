@@ -1,12 +1,13 @@
 package com.telran.bankapplication.controller;
 
 import com.telran.bankapplication.dto.AccountDTO;
-import com.telran.bankapplication.entity.Account;
 import com.telran.bankapplication.service.AccountService;
-import com.telran.bankapplication.service.exception.AccountNotFoundException;
 import com.telran.bankapplication.validation.UUIDValidator;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -34,6 +35,4 @@ public class AccountController {
     public List<AccountDTO> getAllAccounts() {
         return accountService.getAllAccounts();
     }
-
-
 }

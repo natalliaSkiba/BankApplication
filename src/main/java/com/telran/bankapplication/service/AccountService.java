@@ -9,5 +9,5 @@ public interface AccountService {
 
     List<AccountDTO> getAllAccounts();
 
-    AccountDTO getAccountById(String id) ;
+    AccountDTO getAccountById(String id);
 }
