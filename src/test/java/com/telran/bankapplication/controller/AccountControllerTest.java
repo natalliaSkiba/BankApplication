@@ -38,7 +38,7 @@ class AccountControllerTest {
     @Test
     @DisplayName("Test positive scenario for getAccountById, Status 200(OK), JSON response")
     void testPositiveGetAccountById() throws Exception {
-        AccountDTO accountDTO = DtoCreator.getDto();
+        AccountDTO accountDTO = DtoCreator.getAccountDTO();
         when(accountService.getAccountById(EntityCreator.UUID_EXAMPLE)).thenReturn(accountDTO);
         mockMvc.perform(get("/accounts/id/" + EntityCreator.UUID_EXAMPLE))
                 .andExpect(status().isOk())
@@ -72,7 +72,7 @@ class AccountControllerTest {
     @Test
     @DisplayName("Test positive scenario for getAccountByName, Status 200(OK), JSON response")
     void getAccountByNamePositive() throws Exception{
-        AccountDTO accountDTO = DtoCreator.getDto();
+        AccountDTO accountDTO = DtoCreator.getAccountDTO();
         when(accountService.getAccountByName(EntityCreator.NAME_OK)).thenReturn(accountDTO);
         mockMvc.perform(get("/accounts/name/" + EntityCreator.NAME_OK))
                 .andExpect(status().isOk())
@@ -101,7 +101,7 @@ class AccountControllerTest {
     @DisplayName("Test positive scenario for getAllAccounts, Status 200(OK), JSON response")
     void testGetAllAccountsPositive()throws Exception {
         List<AccountDTO> listAccountDTO = new ArrayList<>();
-        listAccountDTO.add(DtoCreator.getDto());
+        listAccountDTO.add(DtoCreator.getAccountDTO());
         when(accountService.getAllAccounts()).thenReturn(listAccountDTO);
         mockMvc.perform(get("/accounts/all"))
                 .andExpect(status().isOk())

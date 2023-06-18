@@ -36,8 +36,8 @@ class AccountServiceImplTest {
     @Test
     @DisplayName("Positive test . Get account by id")
     void testGetAccountByIdPositive() {
-        Account account = EntityCreator.getEntity();
-        AccountDTO accountDTO = DtoCreator.getDto();
+        Account account = EntityCreator.getAccountEntity();
+        AccountDTO accountDTO = DtoCreator.getAccountDTO();
         UUID uuid = UUID.fromString(EntityCreator.UUID_EXAMPLE);
 
         Mockito.when(accountRepository.findAccountById(uuid)).thenReturn(Optional.ofNullable(account));
@@ -63,8 +63,8 @@ class AccountServiceImplTest {
     @Test
     @DisplayName("Positive test . Get account by name")
     void testGetAccountByNamePositive() {
-        Account account = EntityCreator.getEntity();
-        AccountDTO accountDTO = DtoCreator.getDto();
+        Account account = EntityCreator.getAccountEntity();
+        AccountDTO accountDTO = DtoCreator.getAccountDTO();
 
         Mockito.when(accountRepository.findAccountByName(EntityCreator.NAME_OK)).thenReturn(Optional.ofNullable(account));
         Mockito.when(accountMapper.toDTO(account)).thenReturn(accountDTO);
@@ -90,9 +90,9 @@ class AccountServiceImplTest {
     @DisplayName("Positive test . Get all accounts")
     void testGetAllAccountPositive() {
         List<Account> accountList = new ArrayList<>();
-        accountList.add(EntityCreator.getEntity());
+        accountList.add(EntityCreator.getAccountEntity());
         List<AccountDTO> accountDTOList = new ArrayList<>();
-        accountDTOList.add(DtoCreator.getDto());
+        accountDTOList.add(DtoCreator.getAccountDTO());
 
         Mockito.when(accountRepository.findAllAccount()).thenReturn(accountList);
         Mockito.when(accountMapper.toDTOList(accountList)).thenReturn(accountDTOList);

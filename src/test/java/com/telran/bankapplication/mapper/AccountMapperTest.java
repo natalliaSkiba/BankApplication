@@ -2,51 +2,61 @@ package com.telran.bankapplication.mapper;
 
 import com.telran.bankapplication.dto.AccountDTO;
 import com.telran.bankapplication.entity.Account;
-import com.telran.bankapplication.service.impl.AccountServiceImpl;
 import com.telran.bankapplication.util.DtoCreator;
 import com.telran.bankapplication.util.EntityCreator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.mapstruct.factory.Mappers;
-import org.mockito.InjectMocks;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
 
 @DisplayName("Account mapper test class")
 class AccountMapperTest {
-
-    //   AccountMapper accountMapper = Mappers.getMapper(AccountMapper.class);
     private final AccountMapper accountMapper = new AccountMapperImpl();
+    private final Account account = EntityCreator.getAccountEntity();
+    private List<Account> accountList;
+
+
     @DisplayName("Positive test. Account mapper to DTO test")
     @Test
-    void toDtoTest() {
-        Account account = EntityCreator.getEntity();
-        AccountDTO expectedAccountDto = DtoCreator.getDto();
-        Assertions.assertEquals(expectedAccountDto, accountMapper.toDTO(account));
+    void testToDto() {
+        AccountDTO expectedAccountDto = DtoCreator.getAccountDTO();
+        AccountDTO actualAccountDto = accountMapper.toDTO(account);
+
+        Assertions.assertEquals(expectedAccountDto.getName(), actualAccountDto.getName());
+        Assertions.assertEquals(expectedAccountDto.getType(), actualAccountDto.getType());
+        Assertions.assertEquals(expectedAccountDto.getStatus(), actualAccountDto.getStatus());
+        Assertions.assertEquals(expectedAccountDto.getBalance(), actualAccountDto.getBalance());
+        Assertions.assertEquals(expectedAccountDto.getCurrencyCode(), actualAccountDto.getCurrencyCode());
+        Assertions.assertEquals(expectedAccountDto.getClient_id(), actualAccountDto.getClient_id());
+        Assertions.assertEquals(expectedAccountDto.getManager_id(), actualAccountDto.getManager_id());
+        Assertions.assertEquals(expectedAccountDto.getAgreement_status(), actualAccountDto.getAgreement_status());
+        Assertions.assertEquals(expectedAccountDto.getDataCreated(), actualAccountDto.getDataCreated());
+        Assertions.assertEquals(expectedAccountDto.getDataUpdated(), actualAccountDto.getDataUpdated());
+    }
+    @DisplayName("Negative test. Null mapper to DTO test")
+    @Test
+    void TestToDtoNull() {
+        Assertions.assertNull(accountMapper.toDTO(null));
     }
 
-    //new AccountMapperImpl();
-
-//    @DisplayName("Positive test. Account mapper to DTO test")
-//    @Test
-//    void testToDto() {
-//        Account account = EntityCreator.getEntity();
-//        AccountDTO expectedAccountDto = DtoCreator.getDto();
-//        AccountDTO accountDTO = accountMapper.toDTO(account);
-//        assertEquals(account.getName(), accountDTO.getName());
-//        assertEquals(account.getType(), accountDTO.getType());
-//        assertEquals(account.getStatus(), accountDTO.getStatus());
-//        assertEquals(account.getBalance(), accountDTO.getBalance());
-//        assertEquals(account.getCurrencyCode(), accountDTO.getCurrencyCode());
-//        assertEquals(account.getClient().getId().toString(), accountDTO.getClient_id());
-//        //assertEquals(account.getClient().getManager().getId().toString(), accountDTO.getManager_id());
-//        assertEquals(account.getAgreement().getStatus(), accountDTO.getAgreement_status());
-//        //Assertions.assertEquals(expectedAccountDto, accountMapper.toDTO(account));
-//    }
-
+    @DisplayName("Positive test. Accounts list mapper to list DTO")
     @Test
-    void toDTOList() {
+    void testToListDto() {
+        accountList = new ArrayList<>();
+        accountList.add(account);
+        AccountDTO expectedAccountDto = DtoCreator.getAccountDTO();
+        List<AccountDTO> expectedAccountDtoList = new ArrayList<>();
+        expectedAccountDtoList.add(expectedAccountDto);
+        Assertions.assertEquals(expectedAccountDtoList, accountMapper.toDTOList(accountList));
+    }
+    @DisplayName("Negative test. Accounts list null mapper to list DTO")
+    @Test
+    void toListDtoNullTest() {
+        Assertions.assertNull(accountMapper.toDTOList(null));
     }
 }
