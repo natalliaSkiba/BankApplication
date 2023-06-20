@@ -66,12 +66,12 @@ class AccountServiceImplTest {
         Account account = EntityCreator.getAccountEntity();
         AccountDTO accountDTO = DtoCreator.getAccountDTO();
 
-        Mockito.when(accountRepository.findAccountByName(EntityCreator.NAME_OK)).thenReturn(Optional.ofNullable(account));
+        Mockito.when(accountRepository.findAccountByName(EntityCreator.NAME_ACCOUNT_OK)).thenReturn(Optional.ofNullable(account));
         Mockito.when(accountMapper.toDTO(account)).thenReturn(accountDTO);
 
-        AccountDTO returnedAccountDTO = accountService.getAccountByName(EntityCreator.NAME_OK);
+        AccountDTO returnedAccountDTO = accountService.getAccountByName(EntityCreator.NAME_ACCOUNT_OK);
 
-        Mockito.verify(accountRepository).findAccountByName(EntityCreator.NAME_OK);
+        Mockito.verify(accountRepository).findAccountByName(EntityCreator.NAME_ACCOUNT_OK);
         Mockito.verify(accountMapper).toDTO(account);
 
         assertEquals(accountDTO.getName(), returnedAccountDTO.getName());
@@ -81,7 +81,7 @@ class AccountServiceImplTest {
     @DisplayName("Negative test. Get account by Name.")
     void testGetAccountByNameNegative() {
         AccountNotFoundException exception = assertThrows(AccountNotFoundException.class, () -> {
-            accountService.getAccountByName(EntityCreator.NAME_OK);
+            accountService.getAccountByName(EntityCreator.NAME_ACCOUNT_OK);
         });
         assertEquals("Account was not found by this name", exception.getMessage());
     }

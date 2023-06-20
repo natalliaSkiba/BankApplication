@@ -2,16 +2,18 @@ package com.telran.bankapplication.controller;
 
 import com.telran.bankapplication.dto.AccountDTO;
 import com.telran.bankapplication.service.AccountService;
-import com.telran.bankapplication.validation.UUIDValidator;
+import com.telran.bankapplication.validation.annotation.Uuid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
+import jakarta.validation.Valid;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@Validated
 @RequestMapping("/accounts")
 @RequiredArgsConstructor
 public class AccountController {
@@ -23,12 +25,10 @@ public class AccountController {
     }
 
     @GetMapping(path = "/id/{id}")
-    public AccountDTO getAccountById(@PathVariable("id") String id) {
-        if (UUIDValidator.isValidUUID(id)) {
-            return accountService.getAccountById(id);
-        } else {
-            throw new IllegalArgumentException("Invalid UUID");
-        }
+    @ResponseStatus(HttpStatus.OK)
+    public AccountDTO getAccountById(@Uuid
+                                     @PathVariable("id") String id) {
+        return accountService.getAccountById(id);
     }
 
     @GetMapping(path = "/all")

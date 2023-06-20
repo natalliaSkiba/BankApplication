@@ -6,11 +6,11 @@ import com.telran.bankapplication.util.DtoCreator;
 import com.telran.bankapplication.util.EntityCreator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.ArrayList;
@@ -28,12 +28,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class AccountControllerTest {
     @Autowired
     private MockMvc mockMvc;
-
     @MockBean
     private AccountService accountService;
-
-    @InjectMocks
-    private AccountController accountController;
 
     @Test
     @DisplayName("Test positive scenario for getAccountById, Status 200(OK), JSON response")
@@ -45,13 +41,13 @@ class AccountControllerTest {
                 .andExpect(jsonPath("$.name").value("GB29 NWBK 6016 1331 9268 20"))
                 .andExpect(jsonPath("$.type").value("DEPOSIT"))
                 .andExpect(jsonPath("$.status").value("ACTIVE"))
-                .andExpect(jsonPath("$.balance").value("20000"))
+                .andExpect(jsonPath("$.balance").value("20000.0"))
                 .andExpect(jsonPath("$.currencyCode").value("USD"))
                 .andExpect(jsonPath("$.client_id").value("13030d5e-72f5-4d8e-b82f-c88f879093ce"))
                 .andExpect(jsonPath("$.manager_id").value("1"))
                 .andExpect(jsonPath("$.agreement_status").value("ACTIVE"))
-                .andExpect(jsonPath("$.dataCreated").value("2022-01-01"))
-                .andExpect(jsonPath("$.dataUpdated").value("2022-02-01"));
+                .andExpect(jsonPath("$.dataCreated").value("2020-01-01T00:00:00"))
+                .andExpect(jsonPath("$.dataUpdated").value("2020-01-01T00:00:00"));
         Mockito.verify(accountService, Mockito.times(1)).getAccountById(EntityCreator.UUID_EXAMPLE);
     }
 
@@ -59,34 +55,32 @@ class AccountControllerTest {
     @DisplayName("Test negative scenario for getAccountById, invalid ID")
     void testNegativeGetAccountById() throws Exception {
         String invalidId = "1";
-        mockMvc.perform(get("/id/" + invalidId))
-                .andExpect(status().is4xxClientError());
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            accountController.getAccountById(invalidId);
-        });
-        String expectedErrorMessage = "Invalid UUID";
-        String actualErrorMessage = exception.getMessage();
-        assertEquals(expectedErrorMessage, actualErrorMessage);
+        mockMvc.perform(get("/accounts/id/" + invalidId)
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().is4xxClientError())
+                .andExpect(jsonPath("$.errorCode").value("Validation failed"))
+                .andExpect(jsonPath("$.errorExtensions[0].code").value("It is not UUID format"))
+                .andExpect(jsonPath("$.errorExtensions[0].message").value("Variable for path is invalid"));
     }
 
     @Test
     @DisplayName("Test positive scenario for getAccountByName, Status 200(OK), JSON response")
     void getAccountByNamePositive() throws Exception{
         AccountDTO accountDTO = DtoCreator.getAccountDTO();
-        when(accountService.getAccountByName(EntityCreator.NAME_OK)).thenReturn(accountDTO);
-        mockMvc.perform(get("/accounts/name/" + EntityCreator.NAME_OK))
+        when(accountService.getAccountByName(EntityCreator.NAME_ACCOUNT_OK)).thenReturn(accountDTO);
+        mockMvc.perform(get("/accounts/name/" + EntityCreator.NAME_ACCOUNT_OK))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.name").value("GB29 NWBK 6016 1331 9268 20"))
                 .andExpect(jsonPath("$.type").value("DEPOSIT"))
                 .andExpect(jsonPath("$.status").value("ACTIVE"))
-                .andExpect(jsonPath("$.balance").value("20000"))
+                .andExpect(jsonPath("$.balance").value("20000.0"))
                 .andExpect(jsonPath("$.currencyCode").value("USD"))
                 .andExpect(jsonPath("$.client_id").value("13030d5e-72f5-4d8e-b82f-c88f879093ce"))
                 .andExpect(jsonPath("$.manager_id").value("1"))
                 .andExpect(jsonPath("$.agreement_status").value("ACTIVE"))
-                .andExpect(jsonPath("$.dataCreated").value("2022-01-01"))
-                .andExpect(jsonPath("$.dataUpdated").value("2022-02-01"));
-        Mockito.verify(accountService, Mockito.times(1)).getAccountByName(EntityCreator.NAME_OK);
+                .andExpect(jsonPath("$.dataCreated").value("2020-01-01T00:00:00"))
+                .andExpect(jsonPath("$.dataUpdated").value("2020-01-01T00:00:00"));
+        Mockito.verify(accountService, Mockito.times(1)).getAccountByName(EntityCreator.NAME_ACCOUNT_OK);
     }
 
     @Test
@@ -109,13 +103,13 @@ class AccountControllerTest {
                 .andExpect(jsonPath("$[0].name").value("GB29 NWBK 6016 1331 9268 20"))
                 .andExpect(jsonPath("$[0].type").value("DEPOSIT"))
                 .andExpect(jsonPath("$[0].status").value("ACTIVE"))
-                .andExpect(jsonPath("$[0].balance").value("20000"))
+                .andExpect(jsonPath("$[0].balance").value("20000.0"))
                 .andExpect(jsonPath("$[0].currencyCode").value("USD"))
                 .andExpect(jsonPath("$[0].client_id").value("13030d5e-72f5-4d8e-b82f-c88f879093ce"))
                 .andExpect(jsonPath("$[0].manager_id").value("1"))
                 .andExpect(jsonPath("$[0].agreement_status").value("ACTIVE"))
-                .andExpect(jsonPath("$[0].dataCreated").value("2022-01-01"))
-                .andExpect(jsonPath("$[0].dataUpdated").value("2022-02-01"));
+                .andExpect(jsonPath("$[0].dataCreated").value("2020-01-01T00:00:00"))
+                .andExpect(jsonPath("$[0].dataUpdated").value("2020-01-01T00:00:00"));
         Mockito.verify(accountService, Mockito.times(1)).getAllAccounts();
     }
 }

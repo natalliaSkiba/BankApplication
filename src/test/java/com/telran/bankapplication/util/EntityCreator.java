@@ -13,21 +13,22 @@ import java.util.ArrayList;
 @UtilityClass
 public class EntityCreator {
     public static final String UUID_EXAMPLE = "50a9587b-95f5-495c-b74e-5771ee9df49d";
-    public static final String NAME_OK = "GB29 NWBK 6016 1331 9268 20";
+    public static final String NAME_ACCOUNT_OK = "GB29 NWBK 6016 1331 9268 20";
+    public static final String NAME_MANAGER_OK = "Morosova";
 
     public static Account getAccountEntity() {
         Agreement agreement = getAgreementEntity();
+        Client client = getClientEntity();
         return new Account(
                 java.util.UUID.fromString(UUID_EXAMPLE),
-                NAME_OK,
+                NAME_ACCOUNT_OK,
                 AccountType.DEPOSIT,
                 AccountStatus.ACTIVE,
                 20000.0,
                 CurrencyType.USD,
-                LocalDateTime.of(2020,01,01,0,0,0),
-                LocalDateTime.of(2020,01,01,0,0,0),
-
-                getClientEntity(),
+                LocalDateTime.of(2020, 1, 1, 0, 0, 0),
+                LocalDateTime.of(2020, 1, 1, 0, 0, 0),
+                client,
                 null,
                 null,
                 agreement
@@ -42,9 +43,9 @@ public class EntityCreator {
         return agreement;
     }
 
+
     public static Client getClientEntity() {
         Manager manager = getManagerEntity();
-        Agreement agreement = getAgreementEntity();
         return new Client(
                 java.util.UUID.fromString("13030d5e-72f5-4d8e-b82f-c88f879093ce"),
                 ClientStatus.ACTIVE,
@@ -54,8 +55,8 @@ public class EntityCreator {
                 "ATest@gmail.com",
                 "Minsk",
                 "+375293456677",
-                LocalDateTime.of(2021, 12, 2, 9, 0, 0),
-                LocalDateTime.of(2021, 12, 2, 9, 0, 0),
+                LocalDateTime.of(2020, 01, 01, 0, 0, 0),
+                LocalDateTime.of(2020, 01, 01, 0, 0, 0),
                 new ArrayList<>(),
                 manager
         );
@@ -71,7 +72,7 @@ public class EntityCreator {
         Manager manager = new Manager();
         manager.setId(1L);
         manager.setFirstName("Oly");
-        manager.setLastName("Manager");
+        manager.setLastName("Morosova");
         return manager;
     }
 }
