@@ -2,7 +2,10 @@ package com.telran.bankapplication.entity;
 
 import com.telran.bankapplication.entity.enums.ManagerStatus;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;

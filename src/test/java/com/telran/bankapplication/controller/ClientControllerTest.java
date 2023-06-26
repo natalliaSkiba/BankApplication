@@ -78,6 +78,4 @@ class ClientControllerTest {
 
         Mockito.verify(clientService, Mockito.never()).clientNewCreate(clientCreateDto);
     }
-
-
 }

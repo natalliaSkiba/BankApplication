@@ -9,5 +9,4 @@ public interface ManagerMapper {
 
     ManagerDTO toDTO(Manager manager);
 
-
 }

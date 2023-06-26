@@ -4,12 +4,10 @@ import com.telran.bankapplication.dto.AccountDTO;
 import com.telran.bankapplication.service.AccountService;
 import com.telran.bankapplication.validation.annotation.Uuid;
 import lombok.RequiredArgsConstructor;
-
-import jakarta.validation.Valid;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController

@@ -26,6 +26,5 @@ public class ManagerServiceImp implements ManagerService {
     public ManagerDTO getManagerById(String id) {
         return managerMapper.toDTO(managerRepository.findManagerById(Long.parseLong(id))
                 .orElseThrow(() -> new AccountNotFoundException(String.format(ErrorMessage.MANAGER_NOT_FOUNDED, "id", id))));
-
     }
 }

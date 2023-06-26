@@ -43,7 +43,6 @@ public class EntityCreator {
         return agreement;
     }
 
-
     public static Client getClientEntity() {
         Manager manager = getManagerEntity();
         return new Client(

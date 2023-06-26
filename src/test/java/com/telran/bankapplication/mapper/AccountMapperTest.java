@@ -11,15 +11,11 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-
-
 @DisplayName("Account mapper test class")
 class AccountMapperTest {
     private final AccountMapper accountMapper = new AccountMapperImpl();
     private final Account account = EntityCreator.getAccountEntity();
     private List<Account> accountList;
-
 
     @DisplayName("Positive test. Account mapper to DTO test")
     @Test
@@ -54,6 +50,7 @@ class AccountMapperTest {
         expectedAccountDtoList.add(expectedAccountDto);
         Assertions.assertEquals(expectedAccountDtoList, accountMapper.toDTOList(accountList));
     }
+
     @DisplayName("Negative test. Accounts list null mapper to list DTO")
     @Test
     void toListDtoNullTest() {

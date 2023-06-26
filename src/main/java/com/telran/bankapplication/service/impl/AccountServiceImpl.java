@@ -19,7 +19,6 @@ public class AccountServiceImpl implements AccountService {
     private final AccountMapper accountMapper;
     private final AccountRepository accountRepository;
 
-
     @Override
     public AccountDTO getAccountByName(String name) {
         return accountMapper.toDTO(accountRepository.findAccountByName(name)
