@@ -3,6 +3,7 @@ package com.telran.bankapplication.util;
 import com.telran.bankapplication.dto.AccountDTO;
 import com.telran.bankapplication.dto.ClientAfterCreateDto;
 import com.telran.bankapplication.dto.ClientCreateDto;
+import com.telran.bankapplication.dto.ManagerDTO;
 import lombok.experimental.UtilityClass;
 
 import java.time.LocalDateTime;
@@ -20,7 +21,17 @@ public class DtoCreator {
         String agreement_status = "ACTIVE";
         String dataCreated = "2020-01-01T00:00:00";
         String dataUpdated = "2020-01-01T00:00:00";
-        return new AccountDTO(name, type, status, balance, currencyCode, client_id, manager_id, agreement_status, dataCreated, dataUpdated);
+        return new AccountDTO(
+                name,
+                type,
+                status,
+                balance,
+                currencyCode,
+                client_id,
+                manager_id,
+                agreement_status,
+                dataCreated,
+                dataUpdated);
     }
 
     public static ClientCreateDto getClientCreateDTO() {
@@ -47,6 +58,12 @@ public class DtoCreator {
                 LocalDateTime.of(2020, 1, 1, 0, 0, 0),
                 LocalDateTime.of(2020, 1, 1, 0, 0, 0),
                 "Morosova");
+    }
 
+    public static ManagerDTO getManagerDTO(){
+        return new ManagerDTO(
+                "Viktorya",
+                "Morosova"
+        );
     }
 }

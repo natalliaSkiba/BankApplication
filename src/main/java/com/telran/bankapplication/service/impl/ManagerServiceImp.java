@@ -19,12 +19,14 @@ public class ManagerServiceImp implements ManagerService {
     @Override
     public ManagerDTO getManagerByName(String name) {
         return managerMapper.toDTO(managerRepository.findManagerByName(name)
-                .orElseThrow(() -> new ManagerNotFuondException(String.format(ErrorMessage.MANAGER_NOT_FOUNDED, "name", name))));
+                .orElseThrow(() -> new ManagerNotFuondException(String.
+                        format(ErrorMessage.MANAGER_NOT_FOUNDED, "name", name))));
     }
 
     @Override
     public ManagerDTO getManagerById(String id) {
         return managerMapper.toDTO(managerRepository.findManagerById(Long.parseLong(id))
-                .orElseThrow(() -> new AccountNotFoundException(String.format(ErrorMessage.MANAGER_NOT_FOUNDED, "id", id))));
+                .orElseThrow(() -> new AccountNotFoundException(String.
+                        format(ErrorMessage.MANAGER_NOT_FOUNDED, "id", id))));
     }
 }

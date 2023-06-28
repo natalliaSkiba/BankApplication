@@ -9,12 +9,14 @@ import lombok.experimental.UtilityClass;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.UUID;
 
 @UtilityClass
 public class EntityCreator {
     public static final String UUID_EXAMPLE = "50a9587b-95f5-495c-b74e-5771ee9df49d";
     public static final String NAME_ACCOUNT_OK = "GB29 NWBK 6016 1331 9268 20";
     public static final String NAME_MANAGER_OK = "Morosova";
+    public static final String MANAGER_ID = "1L";
 
     public static Account getAccountEntity() {
         Agreement agreement = getAgreementEntity();
@@ -46,7 +48,7 @@ public class EntityCreator {
     public static Client getClientEntity() {
         Manager manager = getManagerEntity();
         return new Client(
-                java.util.UUID.fromString("13030d5e-72f5-4d8e-b82f-c88f879093ce"),
+                UUID.fromString("13030d5e-72f5-4d8e-b82f-c88f879093ce"),
                 ClientStatus.ACTIVE,
                 "2206905511",
                 "Alena",
@@ -54,8 +56,8 @@ public class EntityCreator {
                 "ATest@gmail.com",
                 "Minsk",
                 "+375293456677",
-                LocalDateTime.of(2020, 01, 01, 0, 0, 0),
-                LocalDateTime.of(2020, 01, 01, 0, 0, 0),
+                LocalDateTime.of(2020, 1, 1, 0, 0, 0),
+                LocalDateTime.of(2020, 1, 1, 0, 0, 0),
                 new ArrayList<>(),
                 manager
         );

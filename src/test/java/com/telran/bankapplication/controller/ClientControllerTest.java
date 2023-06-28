@@ -23,19 +23,17 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class ClientControllerTest {
     @Autowired
     private MockMvc mockMvc;
-
     @Autowired
     ObjectMapper objectMapper;
-
     @MockBean
     private ClientService clientService;
 
     @Test
     @DisplayName("Test positive scenario forCreateNewClient")
     void testCreateNewClient() throws Exception {
-
         ClientCreateDto clientCreateDto = DtoCreator.getClientCreateDTO();
         ClientAfterCreateDto clientAfterCreateDto = DtoCreator.getClientCreateAfterDTO();
+
         Mockito.when(clientService.clientNewCreate(clientCreateDto)).thenReturn(clientAfterCreateDto);
         mockMvc.perform(post("/clients/new")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -50,8 +48,10 @@ class ClientControllerTest {
                 .andExpect(jsonPath("$.email").value(clientAfterCreateDto.email()))
                 .andExpect(jsonPath("$.address").value(clientAfterCreateDto.address()))
                 .andExpect(jsonPath("$.phone").value(clientAfterCreateDto.phone()))
-                .andExpect(jsonPath("$.dataClientCreated").value(clientAfterCreateDto.dataClientCreated().toString().substring(0, 10)))
-                .andExpect(jsonPath("$.dataClientUpdated").value(clientAfterCreateDto.dataClientUpdated().toString().substring(0, 10)))
+                .andExpect(jsonPath("$.dataClientCreated").value(clientAfterCreateDto.dataClientCreated()
+                        .toString().substring(0, 10)))
+                .andExpect(jsonPath("$.dataClientUpdated").value(clientAfterCreateDto.dataClientUpdated()
+                        .toString().substring(0, 10)))
                 .andExpect(jsonPath("$.manager").value(clientAfterCreateDto.manager()));
 
         Mockito.verify(clientService, Mockito.times(1)).clientNewCreate(clientCreateDto);

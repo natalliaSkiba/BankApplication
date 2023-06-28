@@ -50,7 +50,8 @@ class ClientServiceImpTest {
         Mockito.when(clientMapper.toCreateEntity(clientCreateDto)).thenReturn(client);
         Mockito.when(clientMapper.toAfterCreateDto(client)).thenReturn(clientAfterCreateDto);
         Mockito.when(clientRepository.save(client)).thenReturn(client);
-        Mockito.when(managerRepository.findManagerByName(EntityCreator.NAME_MANAGER_OK)).thenReturn(Optional.ofNullable(manager));
+        Mockito.when(managerRepository.findManagerByName(EntityCreator.NAME_MANAGER_OK))
+                .thenReturn(Optional.ofNullable(manager));
 
         clientServiceImp.clientNewCreate(clientCreateDto);
 

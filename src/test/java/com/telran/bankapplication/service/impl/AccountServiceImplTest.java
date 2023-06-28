@@ -7,6 +7,7 @@ import com.telran.bankapplication.repository.AccountRepository;
 import com.telran.bankapplication.service.exception.AccountNotFoundException;
 import com.telran.bankapplication.util.DtoCreator;
 import com.telran.bankapplication.util.EntityCreator;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -20,7 +21,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @DisplayName("Account service test class")
@@ -48,16 +48,15 @@ class AccountServiceImplTest {
         Mockito.verify(accountRepository).findAccountById(uuid);
         Mockito.verify(accountMapper).toDTO(account);
 
-        assertEquals(accountDTO.getName(), returnedAccountDTO.getName());
+        Assertions.assertEquals(accountDTO.name(), returnedAccountDTO.name());
     }
 
     @Test
     @DisplayName("Negative test. Get account by Id.")
     void testGetAccountByIdNegative() {
-        AccountNotFoundException exception = assertThrows(AccountNotFoundException.class, () -> {
-            accountService.getAccountById(EntityCreator.UUID_EXAMPLE);
-        });
-        assertEquals("Account was not found by this Id", exception.getMessage());
+        AccountNotFoundException exception = assertThrows(AccountNotFoundException.class,
+                () -> accountService.getAccountById(EntityCreator.UUID_EXAMPLE));
+        Assertions.assertEquals("Account was not found by this Id", exception.getMessage());
     }
 
     @Test
@@ -66,7 +65,8 @@ class AccountServiceImplTest {
         Account account = EntityCreator.getAccountEntity();
         AccountDTO accountDTO = DtoCreator.getAccountDTO();
 
-        Mockito.when(accountRepository.findAccountByName(EntityCreator.NAME_ACCOUNT_OK)).thenReturn(Optional.ofNullable(account));
+        Mockito.when(accountRepository.findAccountByName(EntityCreator.NAME_ACCOUNT_OK))
+                .thenReturn(Optional.of(account));
         Mockito.when(accountMapper.toDTO(account)).thenReturn(accountDTO);
 
         AccountDTO returnedAccountDTO = accountService.getAccountByName(EntityCreator.NAME_ACCOUNT_OK);
@@ -74,16 +74,15 @@ class AccountServiceImplTest {
         Mockito.verify(accountRepository).findAccountByName(EntityCreator.NAME_ACCOUNT_OK);
         Mockito.verify(accountMapper).toDTO(account);
 
-        assertEquals(accountDTO.getName(), returnedAccountDTO.getName());
+        Assertions.assertEquals(accountDTO.name(), returnedAccountDTO.name());
     }
 
     @Test
     @DisplayName("Negative test. Get account by Name.")
     void testGetAccountByNameNegative() {
-        AccountNotFoundException exception = assertThrows(AccountNotFoundException.class, () -> {
-            accountService.getAccountByName(EntityCreator.NAME_ACCOUNT_OK);
-        });
-        assertEquals("Account was not found by this name", exception.getMessage());
+        AccountNotFoundException exception = assertThrows(AccountNotFoundException.class,
+                () -> accountService.getAccountByName(EntityCreator.NAME_ACCOUNT_OK));
+        Assertions.assertEquals("Account was not found by this name", exception.getMessage());
     }
 
     @Test
@@ -107,9 +106,9 @@ class AccountServiceImplTest {
     @DisplayName("Negative test. There are no any accounts")
     void getNotExistAllAccountsByStatusTest() {
         Mockito.when(accountRepository.findAllAccount()).thenReturn(null);
-        AccountNotFoundException exception = assertThrows(AccountNotFoundException.class, () -> {
-            accountService.getAllAccounts();
-        });
-        assertEquals("Any accounts were not found", exception.getMessage());
+        AccountNotFoundException exception = assertThrows(AccountNotFoundException.class,
+                () -> accountService.getAllAccounts());
+        Assertions.assertEquals("Any accounts were not found", exception.getMessage());
     }
+
 }

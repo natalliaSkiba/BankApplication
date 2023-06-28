@@ -18,6 +18,7 @@ public class AccountController {
     private final AccountService accountService;
 
     @GetMapping(path = "/name/{name}")
+    @ResponseStatus(HttpStatus.OK)
     public AccountDTO getAccountByName(@PathVariable("name") String name) {
         return accountService.getAccountByName(name);
     }

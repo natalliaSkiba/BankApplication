@@ -1,6 +1,5 @@
 package com.telran.bankapplication.dto;
 
-
 import jakarta.validation.constraints.NotNull;
 
 public record ClientCreateDto(

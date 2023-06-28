@@ -15,7 +15,7 @@ import java.util.List;
 class AccountMapperTest {
     private final AccountMapper accountMapper = new AccountMapperImpl();
     private final Account account = EntityCreator.getAccountEntity();
-    private List<Account> accountList;
+    public List<Account> accountList;
 
     @DisplayName("Positive test. Account mapper to DTO test")
     @Test
@@ -23,16 +23,16 @@ class AccountMapperTest {
         AccountDTO expectedAccountDto = DtoCreator.getAccountDTO();
         AccountDTO actualAccountDto = accountMapper.toDTO(account);
 
-        Assertions.assertEquals(expectedAccountDto.getName(), actualAccountDto.getName());
-        Assertions.assertEquals(expectedAccountDto.getType(), actualAccountDto.getType());
-        Assertions.assertEquals(expectedAccountDto.getStatus(), actualAccountDto.getStatus());
-        Assertions.assertEquals(expectedAccountDto.getBalance(), actualAccountDto.getBalance());
-        Assertions.assertEquals(expectedAccountDto.getCurrencyCode(), actualAccountDto.getCurrencyCode());
-        Assertions.assertEquals(expectedAccountDto.getClient_id(), actualAccountDto.getClient_id());
-        Assertions.assertEquals(expectedAccountDto.getManager_id(), actualAccountDto.getManager_id());
-        Assertions.assertEquals(expectedAccountDto.getAgreement_status(), actualAccountDto.getAgreement_status());
-        Assertions.assertEquals(expectedAccountDto.getDataCreated(), actualAccountDto.getDataCreated());
-        Assertions.assertEquals(expectedAccountDto.getDataUpdated(), actualAccountDto.getDataUpdated());
+        Assertions.assertEquals(expectedAccountDto.name(), actualAccountDto.name());
+        Assertions.assertEquals(expectedAccountDto.type(), actualAccountDto.type());
+        Assertions.assertEquals(expectedAccountDto.status(), actualAccountDto.status());
+        Assertions.assertEquals(expectedAccountDto.balance(), actualAccountDto.balance());
+        Assertions.assertEquals(expectedAccountDto.currencyCode(), actualAccountDto.currencyCode());
+        Assertions.assertEquals(expectedAccountDto.client_id(), actualAccountDto.client_id());
+        Assertions.assertEquals(expectedAccountDto.manager_id(), actualAccountDto.manager_id());
+        Assertions.assertEquals(expectedAccountDto.agreement_status(), actualAccountDto.agreement_status());
+        Assertions.assertEquals(expectedAccountDto.dataCreated(), actualAccountDto.dataCreated());
+        Assertions.assertEquals(expectedAccountDto.dataUpdated(), actualAccountDto.dataUpdated());
     }
     @DisplayName("Negative test. Null mapper to DTO test")
     @Test
